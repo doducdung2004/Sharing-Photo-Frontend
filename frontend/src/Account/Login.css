@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #c62828; /* đỏ đậm */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: #ffffff; /* form trắng */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container h2 {
+    text-align: center;
+    color: #c62828;
+    margin-bottom: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #c62828;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+button {
+    padding: 12px;
+    background-color: #c62828;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #b71c1c;
+}
+
+.forgot {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.forgot a {
+    color: #c62828;
+    text-decoration: none;
+}
+
+.forgot a:hover {
+    text-decoration: underline;
+}
+
+.res-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.res-section button {
+    background-color: #ef5350;
+}
+
+.res-section button:hover {
+    background-color: #e53935;
+}
+
+p[style*="color: red"] {
+    text-align: center;
+    margin-top: 10px;
+}

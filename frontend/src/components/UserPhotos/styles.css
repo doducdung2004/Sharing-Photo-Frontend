@@ -1,0 +1,73 @@
+.user-photos-container {
+    padding: 24px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsfeed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* khoảng cách giữa các card */
+}
+
+/* Card dạng newsfeed */
+.newsfeed-card {
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 2px solid #ccc; /* Thêm khung viền cho card */
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa nội dung theo chiều ngang */
+}
+
+/* Ảnh trong card */
+.newsfeed-card img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* Giữ tỉ lệ ảnh, không cắt mất nội dung */
+    display: block;
+    margin: 0 auto;
+    border-bottom: 2px solid #eee; /* Ngăn cách ảnh và phần bình luận */
+}
+
+/* Phần nội dung bình luận bên dưới ảnh */
+.newsfeed-card .comment-section {
+    width: 100%;
+    padding: 12px 16px;
+    box-sizing: border-box;
+}
+
+/* Tiêu đề bình luận */
+.MuiTypography-subtitle2 {
+    font-weight: bold;
+    margin-top: 8px;
+    color: #222;
+}
+
+/* Nội dung bình luận */
+.MuiTypography-body2 {
+    font-size: 14px;
+    color: #444;
+}
+.newComment {
+    display: flex;
+    gap: 8px;               /* Khoảng cách giữa input và nút */
+    margin-top: 12px;
+    align-items: center;    /* Căn giữa theo chiều dọc */
+}
+
+.newComment input {
+    flex: 1;                /* Input chiếm hết chiều rộng còn lại */
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.newComment input:focus {
+    border-color: #1976d2; /* Màu khi focus, đồng bộ với MUI */
+}

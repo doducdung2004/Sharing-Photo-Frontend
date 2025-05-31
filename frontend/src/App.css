@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  /* Gradient nền hiện đại */
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Khoảng cách dưới TopBar */
+.topbar-buffer {
+  margin-top: 24px;
+}
+
+/* Container chính */
+.app-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Styles cột trái */
+.left-panel {
+  padding: 20px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+
+/* Styles cột phải */
+.right-panel {
+  padding: 20px;
+  min-height: 80vh;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Hiệu ứng fade in cho các phần tử bên trong */
+.fade-in {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card Media - bo góc và hiệu ứng bóng */
+.MuiCardMedia-root {
+  border-radius: 12px 12px 0 0;
+  object-fit: cover;
+  transition: transform 0.8s ease, filter 0.8s ease;
+  will-change: transform, filter;
+}
+
+.MuiCardMedia-root:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+  cursor: pointer;
+}
+
+.MuiCard-root {
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 1s ease, transform 1s ease;
+  will-change: transform, box-shadow;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.MuiCard-root:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+
+/* Typography cho comment */
+.comments {
+  margin-top: 12px;
+  background-color: #e0e7ff;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.MuiTypography-subtitle2 {
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #4f46e5;
+}
+
+/* Scrollbar đẹp cho cột trái nếu danh sách dài */
+.left-panel {
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.left-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.left-panel::-webkit-scrollbar-thumb {
+  background-color: rgba(79, 70, 229, 0.6);
+  border-radius: 8px;
+}
+
+.left-panel::-webkit-scrollbar-track {
+  background: transparent;
+}

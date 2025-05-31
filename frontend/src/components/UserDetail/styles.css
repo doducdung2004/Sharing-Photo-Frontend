@@ -1,0 +1,61 @@
+/* Container chính cho chi tiết người dùng */
+.user-detail-container {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 24px;
+    max-width: 600px;
+    margin: 0 auto 24px auto;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Tiêu đề "Thông tin chi tiết" */
+.user-detail-container > .MuiTypography-h6 {
+    font-weight: 700;
+    color: #4f46e5;
+    margin-bottom: 20px;
+}
+
+/* Các dòng thông tin */
+.user-detail-container .MuiTypography-body1 {
+    margin-bottom: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* In đậm cho label (Họ và tên:, ID:, v.v.) */
+.user-detail-container strong {
+    color: #2c3e50;
+}
+
+/* Link xem ảnh người dùng */
+.user-detail-container a {
+    display: inline-block;
+    margin-top: 12px;
+    color: #4f46e5;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.user-detail-container a:hover {
+    color: #7ab8ff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Loading và lỗi màu sắc */
+.user-detail-container .loading,
+.user-detail-container .error {
+    font-weight: 600;
+    text-align: center;
+    padding: 20px;
+    color: #4f46e5;
+}
+.user-detail-container .error {
+    color: #e53e3e; /* màu đỏ lỗi */
+}

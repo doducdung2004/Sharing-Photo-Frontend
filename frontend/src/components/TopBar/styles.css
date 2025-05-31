@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+.MuiAppBar-root.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  background: linear-gradient(90deg, #e53935 0%, #d32f2f 100%) !important;
+  color: #fff !important;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 4px 20px rgba(211, 47, 47, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+/* Typography trong TopBar */
+.topbar .MuiTypography-root {
+  transition: transform 0.25s ease;
+}
+
+

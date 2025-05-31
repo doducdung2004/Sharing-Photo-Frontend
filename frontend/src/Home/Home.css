@@ -1,0 +1,20 @@
+.home-container {
+    display: flex;
+    height: calc(100vh - 64px); /* nếu có TopBar chiếm 64px */
+}
+
+.user-list-panel {
+    width: 250px;
+    background-color: #cdb93a; /* đỏ */
+    color: white;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.user-detail-panel {
+    flex: 1;
+    padding: 16px;
+    background-color: #fff;
+    overflow-y: auto;
+}

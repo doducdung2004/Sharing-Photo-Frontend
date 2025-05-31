@@ -1,0 +1,49 @@
+/* Container tổng danh sách người dùng */
+.user-list-container {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+/* Tiêu đề danh sách */
+.user-list-container > .MuiTypography-root {
+    font-weight: 700;
+    color: #4f46e5;
+    margin-bottom: 16px;
+}
+
+/* Style cho từng item trong danh sách */
+.user-list-container .MuiListItem-root {
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    color: #000; /* Màu chữ mặc định đen */
+}
+
+/* Hover từng item */
+.user-list-container .MuiListItem-root:hover {
+    background-color: rgba(122, 184, 255, 0.25); /* nền xanh nhạt */
+    box-shadow: 0 6px 24px rgba(122, 184, 255, 0.45); /* bóng đổ xanh nhạt */
+    cursor: pointer;
+    color: #7ab8ff; /* màu chữ xanh nhạt khi hover */
+}
+
+/* Text trong từng item */
+.user-list-container .MuiListItemText-primary {
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+/* Divider giữa các item */
+.user-list-container .MuiDivider-root {
+    margin-left: 16px; /* lùi vào để không sát lề */
+    margin-right: 16px;
+    background-color: rgba(122, 184, 255, 0.2); /* màu xanh nhạt cho divider */
+}
