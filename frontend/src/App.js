@@ -10,9 +10,11 @@ import UserPhotos from "./components/UserPhotos";
 import Login from "./Account/Login";
 import Register from "./Account/Register";
 import ForgotPassword from "./Account/ForgotPassword";
-import Form from "./components/TopBar/Form" ;
+import Form from "./components/TopBar/Form";
 import "./App.css";
 import UpdateProfile from "./components/UserList/UpdateProfile";
+
+const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
 const RequireAuth = ({ user }) => {
     if (!user) {
@@ -23,31 +25,30 @@ const RequireAuth = ({ user }) => {
 
 const App = () => {
     const [user, setUser] = useState(null);
-    const logOut  = async () => {
-        const logout = await fetch("http://localhost:8081/api/logout" , {
-            method: "POST",
-            credentials: "include",
-        })
-            .then(res => {
-                if (res.ok) {
-                    setUser(null);
-                } else {
-                    alert("Logout thất bại");
-                }
-            })
-            .catch(err => {
-                console.error("Logout error:", err);
-                alert("Logout thất bại");
+
+    const logOut = async () => {
+        try {
+            const res = await fetch(`${apiUrl}/api/logout`, {
+                method: "POST",
+                credentials: "include",
             });
-    }
+            if (res.ok) {
+                setUser(null);
+            } else {
+                alert("Logout thất bại");
+            }
+        } catch (err) {
+            console.error("Logout error:", err);
+            alert("Logout thất bại");
+        }
+    };
 
     const fetchCurrentUser = async () => {
         try {
-            const res = await fetch("http://localhost:8081/api/current_user", {
+            const res = await fetch(`${apiUrl}/api/current_user`, {
                 method: "GET",
                 credentials: "include",
             });
-            console.log("fetchCurrentUser response:", res);
             if (res.ok) {
                 const userData = await res.json();
                 setUser(userData);
@@ -55,6 +56,7 @@ const App = () => {
                 setUser(null);
             }
         } catch (err) {
+            console.error("Fetch current user error:", err);
             setUser(null);
         }
     };
@@ -62,6 +64,7 @@ const App = () => {
     useEffect(() => {
         fetchCurrentUser();
     }, []);
+
     return (
         <Router>
             <TopBar user={user} onLogout={logOut} />
