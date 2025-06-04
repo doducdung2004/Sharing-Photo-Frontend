@@ -3,16 +3,20 @@ import { Typography } from "@mui/material";
 import "./styles.css";
 import { useParams, Link } from "react-router-dom";
 
+const apiUrl = process.env.REACT_APP_BACKEND_URL;
+
 function UserDetail() {
-    const { userId } = useParams();  // lấy userId từ URL param
+    const { userId } = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
     useEffect(() => {
         const fetchUser = async () => {
+            setLoading(true);
+            setError("");
             try {
-                const response = await fetch(`http://localhost:8081/api/user/${userId}`);
+                const response = await fetch(`${apiUrl}/api/user/${userId}`);
                 if (!response.ok) {
                     throw new Error(`Lỗi khi tải người dùng: ${response.status}`);
                 }
@@ -20,6 +24,7 @@ function UserDetail() {
                 setUser(data);
             } catch (err) {
                 setError(err.message);
+                setUser(null);
             } finally {
                 setLoading(false);
             }
@@ -48,8 +53,7 @@ function UserDetail() {
     }
 
     return (
-        <>
-            <div className="user-detail-container">
+        <div className="user-detail-container">
             <Typography variant="h6" gutterBottom>
                 Thông tin chi tiết
             </Typography>
@@ -60,17 +64,16 @@ function UserDetail() {
                 <strong>ID:</strong> {user._id}
             </Typography>
             <Typography variant="body1">
-                <strong>Vị trí:</strong> {user.location}
+                <strong>Vị trí:</strong> {user.location || "Chưa cập nhật"}
             </Typography>
             <Typography variant="body1">
-                <strong>Mô tả:</strong> {user.description}
+                <strong>Mô tả:</strong> {user.description || "Chưa cập nhật"}
             </Typography>
             <Typography variant="body1">
-                <strong>Nghề nghiệp:</strong> {user.occupation}
+                <strong>Nghề nghiệp:</strong> {user.occupation || "Chưa cập nhật"}
             </Typography>
             <Link to={`/users/${userId}/photos`}>Xem ảnh của người dùng</Link>
-            </div>
-        </>
+        </div>
     );
 }
 
