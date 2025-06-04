@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const apiUrl = process.env.REACT_APP_BACKEND_URL;
+
 function Form() {
     const [image, setImage] = useState(null);
     const [preview, setPreview] = useState(null);
@@ -23,10 +25,10 @@ function Form() {
             const formData = new FormData();
             formData.append("photo", image);
 
-            const response = await fetch("http://localhost:8081/api/photo/new", {
+            const response = await fetch(`${apiUrl}/api/photo/new`, {
                 method: "POST",
                 body: formData,
-                credentials: "include"
+                credentials: "include",
             });
 
             if (response.ok) {
@@ -49,10 +51,16 @@ function Form() {
                 {preview && (
                     <div style={{ marginTop: "10px" }}>
                         <p>Ảnh xem trước:</p>
-                        <img src={preview} alt="Preview" style={{ width: "100%", borderRadius: "8px" }} />
+                        <img
+                            src={preview}
+                            alt="Preview"
+                            style={{ width: "100%", borderRadius: "8px" }}
+                        />
                     </div>
                 )}
-                <button type="submit" style={{ marginTop: "10px" }}>Upload</button>
+                <button type="submit" style={{ marginTop: "10px" }}>
+                    Upload
+                </button>
             </form>
         </div>
     );
