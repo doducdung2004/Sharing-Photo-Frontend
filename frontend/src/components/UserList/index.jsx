@@ -9,13 +9,15 @@ import {
 import { Link } from "react-router-dom";
 import "./styles.css";
 
+const apiUrl = process.env.REACT_APP_BACKEND_URL;
+
 function UserList() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:8081/api/user/list");
+                const response = await fetch(`${apiUrl}/api/user/list`);
                 const result = await response.json();
                 setData(result);
             } catch (error) {
@@ -26,8 +28,7 @@ function UserList() {
     }, []);
 
     return (
-        <>
-            <div className="user-list-container" >
+        <div className="user-list-container">
             <Typography variant="body1">Danh sách người dùng</Typography>
             <List component="nav">
                 {data.map((item) => (
@@ -39,8 +40,7 @@ function UserList() {
                     </React.Fragment>
                 ))}
             </List>
-            </div>
-        </>
+        </div>
     );
 }
 
