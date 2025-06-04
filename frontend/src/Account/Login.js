@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import './Login.css';
 
+const apiUrl = process.env.REACT_APP_BACKEND_URL;
+
 export default function Login({ onLogin }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -18,7 +20,7 @@ export default function Login({ onLogin }) {
         }
 
         try {
-            const response = await fetch("http://localhost:8081/api/login", {
+            const response = await fetch(`${apiUrl}/api/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
