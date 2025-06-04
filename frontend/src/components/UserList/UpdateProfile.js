@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+const apiUrl = process.env.REACT_APP_BACKEND_URL;
+
 function UpdateProfile() {
     const [form, setForm] = useState({
         first_name: "",
@@ -12,7 +14,7 @@ function UpdateProfile() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch("http://localhost:8081/api/user/me", {
+                const res = await fetch(`${apiUrl}/api/user/me`, {
                     credentials: "include",
                 });
                 if (res.ok) {
@@ -42,7 +44,7 @@ function UpdateProfile() {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:8081/api/user/update", {
+            const response = await fetch(`${apiUrl}/api/user/update`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
