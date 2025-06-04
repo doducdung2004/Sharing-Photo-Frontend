@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Register.css';
 
+const apiUrl = process.env.REACT_APP_BACKEND_URL;
+
 export default function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -25,7 +27,7 @@ export default function Register() {
         }
 
         try {
-            const response = await fetch("http://localhost:8081/api/register", {
+            const response = await fetch(`${apiUrl}/api/register`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password, first_name: firstName }),
