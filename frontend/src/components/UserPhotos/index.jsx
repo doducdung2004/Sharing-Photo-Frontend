@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import "./styles.css";
+const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
 function UserPhotos() {
     const { userId } = useParams();
@@ -17,9 +18,7 @@ function UserPhotos() {
 
     const fetchPhotos = async () => {
         try {
-            const response = await fetch(
-                `http://localhost:8081/api/photo/photoOfUsers/${userId}`
-            );
+            const response = await fetch(`${apiUrl}/api/photo/photoOfUsers/${userId}`);
             if (!response.ok) {
                 throw new Error(`HTTP status ${response.status}`);
             }
@@ -32,9 +31,7 @@ function UserPhotos() {
 
     const fetchUser = async () => {
         try {
-            const response = await fetch(
-                `http://localhost:8081/api/user/${userId}`
-            );
+            const response = await fetch(`${apiUrl}/api/user/${userId}`);
             if (!response.ok) throw new Error(`HTTP status ${response.status}`);
             const result = await response.json();
             setName(result.first_name);
@@ -43,13 +40,11 @@ function UserPhotos() {
         }
     };
 
-    // Gọi fetchUser và fetchPhotos khi userId thay đổi
     useEffect(() => {
         fetchUser();
         fetchPhotos();
     }, [userId]);
 
-    // Hàm gọi lại khi upload ảnh thành công (cập nhật lại danh sách ảnh)
     const onUploadSuccess = () => {
         fetchPhotos();
     };
@@ -67,7 +62,7 @@ function UserPhotos() {
 
         try {
             const response = await fetch(
-                `http://localhost:8081/api/commentsOfPhoto/${photoId}`,
+                `${apiUrl}/api/commentsOfPhoto/${photoId}`,
                 {
                     method: "POST",
                     headers: {
@@ -97,7 +92,7 @@ function UserPhotos() {
                     <Card className="newsfeed-card" key={photo._id}>
                         <CardMedia
                             component="img"
-                            image={`http://localhost:8081/uploads/${photo.file_name}`}
+                            image={`${apiUrl}/uploads/${photo.file_name}`}
                             alt={`Ảnh ${photo._id}`}
                         />
                         <CardContent>
