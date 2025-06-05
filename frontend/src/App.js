@@ -6,7 +6,7 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { Typography, CircularProgress, Box } from "@mui/material";
 
 import Home from "./Home/Home";
 import TopBar from "./components/TopBar";
@@ -17,20 +17,22 @@ import Login from "./Account/Login";
 import Register from "./Account/Register";
 import ForgotPassword from "./Account/ForgotPassword";
 import Form from "./components/TopBar/Form";
-import "./App.css";
 import UpdateProfile from "./components/UserList/UpdateProfile";
+
+import "./App.css";
 
 const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
 const RequireAuth = ({ user }) => {
-  if (!user) {
+  if (user === null) {
     return <Navigate to="/login" replace />;
   }
   return <Outlet />;
 };
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(undefined); // undefined: chưa tải, null: không có user
+  const [loading, setLoading] = useState(true);
 
   const logOut = () => {
     localStorage.removeItem("token");
@@ -41,6 +43,7 @@ const App = () => {
     const token = localStorage.getItem("token");
     if (!token) {
       setUser(null);
+      setLoading(false);
       return;
     }
 
@@ -49,8 +52,12 @@ const App = () => {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
+        // Nếu backend dùng cookie xác thực:
+        // credentials: "include",
       });
+
       if (res.ok) {
         const userData = await res.json();
         setUser(userData);
@@ -60,12 +67,22 @@ const App = () => {
     } catch (err) {
       console.error("Fetch current user error:", err);
       setUser(null);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchCurrentUser();
   }, []);
+
+  if (loading) {
+    return (
+      <Box sx={{ mt: 10, display: "flex", justifyContent: "center" }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Router>
@@ -74,7 +91,6 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
-
         <Route path="/login" element={<Login onLogin={fetchCurrentUser} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login/forgotpass" element={<ForgotPassword />} />
@@ -95,12 +111,7 @@ const App = () => {
         <Route
           path="*"
           element={
-            <Typography
-              variant="h6"
-              color="error"
-              align="center"
-              sx={{ mt: 5 }}
-            >
+            <Typography variant="h6" color="error" align="center" sx={{ mt: 5 }}>
               404 - Trang không tồn tại
             </Typography>
           }
